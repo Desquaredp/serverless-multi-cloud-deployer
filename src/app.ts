@@ -8,13 +8,14 @@ const cli =  Command;
 
 cli
     .name('s26r')
-    .description('Serverless-Multi-Cloud-Deployer')
+    .description('s26r offers a simple way to deploy your applications to the cloud.')
     .version('0.0.0')
     // .action(meow.showHelp)
 
 cli.command('up')
     .description('Start deployment process the files  created by this app')
     .action(() => {
+        console.log('up')
     });
 
 cli.command('info')

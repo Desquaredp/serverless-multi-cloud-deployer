@@ -1,5 +1,6 @@
 const meow = require('meow');
 const meowHelp = require('cli-meow-help');
+import chalk from "chalk";
 
 const flags = {
     version:{
@@ -11,7 +12,8 @@ const flags = {
 };
 
 const commands = {
-    up: {desc: 'Initiate deployment process'},
+
+    up: {desc: chalk.bgBlue( 'Initiate deployment process')},
     info: {desc: 'Show help for a certain provider'},
     map: {desc: 'Table of the acid aliases for service provider parameters.'},
     down: {desc: 'Removes the acid.yml and log files'},
