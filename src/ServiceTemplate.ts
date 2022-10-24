@@ -11,6 +11,7 @@ const service = {
 
     template: {
         containers: [container],
+        serviceAccount: 'local-docker-service@hello-world-172023.iam.gserviceaccount.com',
 
     },
 

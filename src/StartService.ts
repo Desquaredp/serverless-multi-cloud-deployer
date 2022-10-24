@@ -18,71 +18,71 @@
 
 
 
-// 'use strict';
-// const ser = require('./ServiceTemplate');
-//
-// function main() {
-//     // [START run_v2_generated_Services_ListServices_async]
-//     /**
-//      * This snippet has been automatically generated and should be regarded as a code template only.
-//      * It will require modifications to work.
-//      * It may require correct/in-range values for request initialization.
-//      * TODO(developer): Uncomment these variables before running the sample.
-//      */
-//     /**
-//      *  Required. The location and project to list resources on.
-//      *  Location must be a valid GCP region, and may not be the "-" wildcard.
-//      *  Format: projects/{projectnumber}/locations/{location}
-//      */
-//         // const parent = 'abc123'
-//
-//     const parent = 'projects/174561353473/locations/us-central1';
-//     /**
-//      *  Maximum number of Services to return in this call.
-//      */
-//     // const pageSize = 1234
-//     /**
-//      *  A page token received from a previous call to ListServices.
-//      *  All other parameters must match.
-//      */
-//     // const pageToken = 'abc123'
-//     /**
-//      *  If true, returns deleted (but unexpired) resources along with active ones.
-//      */
-//         // const showDeleted = true
-//
-//         // Imports the Run library
-//     const {ServicesClient} = require('@google-cloud/run').v2;
-//
-//     // Instantiates a client
-//     const runClient = new ServicesClient();
-//     const serviceId = 'hello2';
-//     console.log(ser);
-//     const service = {template: null};
-//     service.template = ser.template;
-//     const validate_only = true;
-//
-//     async function callCreateService() {
-//         // Construct request
-//         const request = {
-//             parent,
-//             service,
-//             serviceId,
-//             validate_only,
-//         };
-//
-//         // Run request
-//         const [operation] = await runClient.createService(request);
-//         const [response] = await operation.promise();
-//         console.log(response);
-//     }
-//
-//     callCreateService();
-//     // [END run_v2_generated_Services_ListServices_async]
-// }
-//
-// process.on('unhandledRejection', err => {
-//     console.error(err.message);
-//     process.exitCode = 1;
-// });
-// main();
+'use strict';
+const ser = require('./ServiceTemplate');
+
+function m() {
+    // [START run_v2_generated_Services_ListServices_async]
+    /**
+     * This snippet has been automatically generated and should be regarded as a code template only.
+     * It will require modifications to work.
+     * It may require correct/in-range values for request initialization.
+     * TODO(developer): Uncomment these variables before running the sample.
+     */
+    /**
+     *  Required. The location and project to list resources on.
+     *  Location must be a valid GCP region, and may not be the "-" wildcard.
+     *  Format: projects/{projectnumber}/locations/{location}
+     */
+        // const parent = 'abc123'
+
+    const parent = 'projects/174561353473/locations/us-central1';
+    /**
+     *  Maximum number of Services to return in this call.
+     */
+    // const pageSize = 1234
+    /**
+     *  A page token received from a previous call to ListServices.
+     *  All other parameters must match.
+     */
+    // const pageToken = 'abc123'
+    /**
+     *  If true, returns deleted (but unexpired) resources along with active ones.
+     */
+        // const showDeleted = true
+
+        // Imports the Run library
+    const {ServicesClient} = require('@google-cloud/run').v2;
+
+    // Instantiates a client
+    const runClient = new ServicesClient();
+    const serviceId = 'league';
+    //console.log(ser);
+    const service = {template: null};
+    service.template = ser.template;
+    const validate_only = true;
+
+    async function callCreateService() {
+        // Construct request
+        const request = {
+            parent,
+            service,
+            serviceId,
+            validate_only,
+        };
+
+        // Run request
+        const [operation] = await runClient.createService(request);
+        const [response] = await operation.promise();
+        console.log(response);
+    }
+
+    callCreateService();
+    // [END run_v2_generated_Services_ListServices_async]
+}
+
+process.on('unhandledRejection', err => {
+    console.error(err.message);
+    process.exitCode = 1;
+});
+m();
