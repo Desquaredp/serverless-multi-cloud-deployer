@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const Command = require('commander');
-//const meow = require('./help');
-//const flags = meow.flags;
+const interface = require('./Imeow');
+//const flags = interface.flags;
 //const { clear, debug} = flags;
 const cli =  Command;
 
@@ -10,7 +10,7 @@ cli
     .name('s26r')
     .description('s26r offers a simple way to deploy your applications to the cloud.')
     .version('0.0.0')
-    // .action(meow.showHelp)
+    .action(interface.showHelp)
 
 cli.command('up')
     .description('Start deployment process the files  created by this app')
@@ -33,7 +33,7 @@ cli.command('logs')
 
 cli.command('help')
     .description('Print help info')
-    // .action(meow.showHelp);
+    // .action(interface.showHelp);
 
 cli.command('clear')
     .description('Clear the console')
