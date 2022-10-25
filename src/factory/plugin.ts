@@ -11,14 +11,14 @@ const manager = new PluginManager();
 manager.registerPlugin({
     name: 'GCP Cloud Run',
     templateFile: './bin/PROVIDERS/templates/gcloud_run_tmpl.json',
-    location: './GCP_CloudRun'
+    location: './cloudRun/CloudRun'
 });
 
 
 manager.registerPlugin({
     name: 'Azure Container Instance',
     templateFile: './bin/PROVIDERS/templates/azure_appinst_tmpl.json',
-    location: './Azure_ContainerInstance'
+    location: './cloudRun/CloudRun'
 });
 
 module.exports = manager;

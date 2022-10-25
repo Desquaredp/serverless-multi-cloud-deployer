@@ -1,21 +1,24 @@
 #!/usr/bin/env node
+import {PluginManager} from "./factory/factory";
+
 const Command = require('commander');
-const interface = require('./Imeow');
-//const flags = interface.flags;
-//const { clear, debug} = flags;
+const inter = require('./Imeow');
+const plugins = require('./factory/plugin');
 const cli =  Command;
+import { Commands } from './Commands';
 
 
 cli
     .name('s26r')
     .description('s26r offers a simple way to deploy your applications to the cloud.')
     .version('0.0.0')
-    .action(interface.showHelp)
+    .action(inter.showHelp)
 
 cli.command('up')
     .description('Start deployment process the files  created by this app')
     .action(() => {
-        console.log('up')
+        const instance = new Commands(plugins);
+        instance.up();
     });
 
 cli.command('info')
@@ -33,7 +36,7 @@ cli.command('logs')
 
 cli.command('help')
     .description('Print help info')
-    // .action(interface.showHelp);
+    // .action(inter.showHelp);
 
 cli.command('clear')
     .description('Clear the console')

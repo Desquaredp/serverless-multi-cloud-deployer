@@ -2,6 +2,8 @@
  *
  * This contains the factory that registers and loads plugins.
  * **/
+import {write} from "fs";
+
 const Pro = require("./abstractProvider");
 //const ProviderPlugin = require("./IProviderPlugin");
 import {IProviderPlugin} from './IProviderPlugin';
@@ -72,8 +74,8 @@ export class PluginManager{
         return obj as T;
     }
 
-    listPluginList(): Map<string, IProviderPlugin> {
-        return this.pluginList;
+    listPluginList(): IterableIterator<string>{
+        return this.pluginList.keys()[Symbol.iterator]();
     }
 
     /**

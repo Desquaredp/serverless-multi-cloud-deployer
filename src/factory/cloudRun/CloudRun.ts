@@ -1,5 +1,16 @@
 import {Provider} from "../abstractProvider";
+import {Params} from "./Params";
 
-export class CloudRun extends Provider {
+ class CloudRun extends Provider {
+
+    params: Params;
+
+    paramsList(): string[] {
+
+        let paramsList: string[] = ['projectNumber', 'location', 'serviceId', 'image'];
+
+        return paramsList;
+    }
 
 }
+module.exports = CloudRun;

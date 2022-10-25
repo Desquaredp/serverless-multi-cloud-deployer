@@ -6,6 +6,7 @@ export abstract class Provider {
 
     constructor(private properties: object) {
     }
+    abstract paramsList(): string[];
 
     // abstract initialize(): void;
     // abstract auth(): void;
