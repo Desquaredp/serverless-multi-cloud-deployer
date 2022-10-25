@@ -1,6 +1,7 @@
 import {PluginManager}  from './factory/factory';
 const inquirer = require('inquirer');
 import {Provider} from "./factory/abstractProvider";
+const ora = require("ora");
 
 export class Commands{
 
@@ -22,7 +23,6 @@ export class Commands{
     async up(){
 
         let providers = this.getProviders();
-        console.log(providers);
 
         const provider =await inquirer.prompt([
             {
@@ -38,7 +38,29 @@ export class Commands{
         });
 
         const providerInstance: Provider = await this.manager.loadPlugin(provider, null);
-        console.log( providerInstance.paramsList());
+        const listOfParams: string[] =  providerInstance.paramsList();
+        let query: any[] = [];
+
+        for (let param of listOfParams){
+            query.push({
+                type: 'input',
+                name: param,
+                message: `Please fill the value for ${param}: `
+            });
+        }
+
+        const requiredVals = await inquirer.prompt(query).then(answers => {
+
+            return answers;
+        });
+        const spinner = ora({
+            text: '',
+        });
+
+        spinner.start('Deploying...');
+        providerInstance.deploy(requiredVals);
+        spinner.stop();
+
 
 
     }
