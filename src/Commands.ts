@@ -41,7 +41,6 @@ export class Commands{
 
         }
 
-        const spinner = ora();
         if(obj != null){
             logger.info("s26r.yml found!");
 
@@ -114,6 +113,46 @@ export class Commands{
         await this.writeFile("s26r.yml" , requiredVals);
 
 
+
+    }
+
+    async logs(){
+
+        try{
+            logger.info("Fetching logs");
+            const errorFile =  fs.readFileSync('error.log', 'utf8');
+            const combinedFile = fs.readFileSync('combined.log', 'utf8');
+
+            const files = ['Error log', 'Combined log'];
+
+            const file =await inquirer.prompt([
+                {
+                    type: 'list',
+                    message: "Pick the log to view",
+                    name: 'file',
+                    choices: files,
+                }
+            ]).then (answers => {
+
+                return answers.file;
+
+            });
+
+            if(file == 'Error log'){
+                console.log(chalk.red(errorFile));
+            }else if(file == 'Combined log'){
+                console.log(chalk.green(combinedFile));
+            }
+
+
+
+
+
+        }catch (err){
+
+            logger.error("Error in fetching logs");
+            logger.error(err);
+        }
 
     }
 

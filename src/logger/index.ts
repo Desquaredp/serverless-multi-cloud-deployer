@@ -1,12 +1,21 @@
 const winston = require('winston');
 
+
+const logFormat = winston.format.printf(({ level, message, timestamp }) => {
+    return `${timestamp} ${level}: ${message}`;
+});
+
 const logger = winston.createLogger({
 
     level: 'info',
     format: winston.format.combine(
         //winston.format.colorize(),
-        winston.format.simple()
-        ),
+        winston.format.simple(),
+        winston.format.timestamp({
+            format: 'YYYY-MM-DD HH:mm:ss A ZZ' // '2019-01-01 12:00:00 AM +0000'
+        }),
+        logFormat
+    ),
     // defaultMeta: { service: 'user-service' },
     transports: [
         //

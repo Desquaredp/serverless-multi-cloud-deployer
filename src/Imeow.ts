@@ -8,6 +8,7 @@ const flags = {
         alias: 'v',
         desc: 'version'
     }
+
 };
 
 const commands = {

@@ -11,8 +11,9 @@ import { Commands } from './Commands';
 cli
     .name('s26r')
     .description('s26r offers a simple way to deploy your applications to the cloud.')
-    .version('0.0.0')
+    .version('0.0.1')
     .action(inter.showHelp)
+
 
 cli.command('up')
     .description('Start deployment process the files  created by this app')
@@ -32,7 +33,10 @@ cli.command('down')
 
 cli.command('logs')
     .description('Prints local logs to the console')
-    // .action(commands.prototype.getLogs);
+    .action(() => {
+        const instance = new Commands(plugins);
+        instance.logs();
+    });
 
 cli.command('help')
     .description('Print help info')
