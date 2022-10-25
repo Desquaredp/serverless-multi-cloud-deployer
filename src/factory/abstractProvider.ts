@@ -4,7 +4,7 @@
 
 export abstract class Provider {
 
-    constructor(private properties: object) {
+    constructor( properties: any) {
     }
     abstract paramsList(): string[];
     abstract deploy(params: any );

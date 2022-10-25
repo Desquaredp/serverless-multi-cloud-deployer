@@ -2,13 +2,17 @@ import {Provider} from "../abstractProvider";
 import {Params} from "./Params";
 import {exitOnError} from "winston";
 const logger = require('../../logger/index');
+const ora = require("ora");
 
  class CloudRun extends Provider {
+
 
     params: Params;
     parent: string;
     serviceId: string;
     service: any;
+
+
 
     paramsList(): string[] {
 
@@ -48,11 +52,19 @@ const logger = require('../../logger/index');
             service,
             serviceId,
         };
+
+        const spinner = ora();
         try {
+
+            spinner.start('Deploying...');
             const [operation] = await client.createService(request);
             const [response] = await operation.promise();
+            spinner.succeed('Deployed');
+
             return response;
+
         }catch (e) {
+            spinner.fail('Failed to deploy!');
             logger.error(e);
             return e;
         }

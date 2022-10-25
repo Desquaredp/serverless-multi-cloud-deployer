@@ -4,10 +4,11 @@ import {Provider} from "./factory/abstractProvider";
 const ora = require("ora");
 const logger = require('./logger/index');
 const chalk = require('chalk');
-const fh = require('./FileProcessor');
 
 const yaml = require('js-yaml');
 const fs = require('fs');
+
+
 export class Commands{
 
     manager: PluginManager;
@@ -26,6 +27,45 @@ export class Commands{
     }
 
     async up(){
+
+        let obj: object = null;
+        try{
+            logger.info("Finding pre-existing s26r.yml file");
+
+            obj = await this.parseYaml('./s26r.yml');
+
+        }catch (err){
+
+            logger.info("s26r.yml file either corrupted or not found");
+            logger.info("Initializing new s26r.yml file");
+
+        }
+
+        const spinner = ora();
+        if(obj != null){
+            logger.info("s26r.yml found!");
+
+            try {
+
+
+                const provider = await obj['provider'];
+                const providerInstance: Provider = await this.manager.loadPlugin(provider, obj);
+                const deploy = await providerInstance.deploy(obj);
+
+            }catch (err){
+
+                logger.error("Error in deployment");
+                logger.error(err);
+            }
+
+        }else{
+            await this.noFileFoundProtocol();
+        }
+
+
+    }
+
+    async noFileFoundProtocol(): Promise<void> {
 
         let providers = this.getProviders();
 
@@ -64,21 +104,30 @@ export class Commands{
                 logger.warn( `The value for ${key} is empty, this may prevent the deployment from working`);
             }
         }
-        const spinner = ora();
 
-        spinner.start('Deploying...');
 
         await providerInstance.deploy(requiredVals);
 
-        spinner.stop();
 
 
+        requiredVals['provider'] = provider.toString();
         await this.writeFile("s26r.yml" , requiredVals);
 
 
 
+    }
+
+    async parseYaml(filePath: string): Promise<object>   {
+
+        try {
+            const json = yaml.load(fs.readFileSync(filePath, 'utf8'));
+            return json;
+        } catch (err) {
+            throw new Error(err);
+        }
 
     }
+
 
     async writeFile(filePath: string, json: any): Promise<void> {
 

@@ -64,7 +64,7 @@ export class PluginManager{
      * @param {string, any[]} Takes in the name of the plugin and the properties to be passed to the plugin
      * @returns {T} Returns the plugin instance.
      * **/
-    loadPlugin<T>(name: string, properties: any[]): T {
+    loadPlugin<T>(name: string, properties: any): T {
         const plugin = this.pluginList.get(name);
         if (!plugin) {
             throw new Error(`Cannot find plugin ${name}`);
