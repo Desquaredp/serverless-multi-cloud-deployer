@@ -1,5 +1,6 @@
 import {Provider} from "../abstractProvider";
 import {Params} from "./Params";
+import {exitOnError} from "winston";
 const logger = require('../../logger/index');
 
  class CloudRun extends Provider {

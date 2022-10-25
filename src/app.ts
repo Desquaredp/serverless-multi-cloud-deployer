@@ -42,22 +42,6 @@ cli.command('clear')
     .description('Clear the console')
     // .action(commands.prototype.cleanUp);
 
-cli.command('map')
-    .description('Table of the acid aliases for service provider parameters.')
-    // .action(commands.prototype.map);
-cli.command('wizard')
-    .description('Interactive deployment')
-    .action(() => {
-
-        }
-    );
-
-cli.command('list')
-    .description('List of all deployed projects to a certain provider')
-    .argument('<provider>', 'provider name')
-    .action((provider) => {
-    });
-
 
 cli.command('monitor')
     .description('Provides the health analysis for the deployed applications.')

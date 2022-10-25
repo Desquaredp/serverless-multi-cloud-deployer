@@ -4,7 +4,10 @@ import {Provider} from "./factory/abstractProvider";
 const ora = require("ora");
 const logger = require('./logger/index');
 const chalk = require('chalk');
+const fh = require('./FileProcessor');
 
+const yaml = require('js-yaml');
+const fs = require('fs');
 export class Commands{
 
     manager: PluginManager;
@@ -61,15 +64,38 @@ export class Commands{
                 logger.warn( `The value for ${key} is empty, this may prevent the deployment from working`);
             }
         }
-
         const spinner = ora();
 
         spinner.start('Deploying...');
-        providerInstance.deploy(requiredVals);
+
+        await providerInstance.deploy(requiredVals);
 
         spinner.stop();
 
 
+        await this.writeFile("s26r.yml" , requiredVals);
 
+
+
+
+    }
+
+    async writeFile(filePath: string, json: any): Promise<void> {
+
+        try {
+            fs.writeFileSync(filePath, this.jsonToYaml(json));
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+
+    /**
+     * This function takes in a .json object and returns a .yaml formatted text.
+     * @param json
+     * @returns {string} yaml formatted text
+     */
+    jsonToYaml(json: object): string {
+        return yaml.dump(json);
     }
 }

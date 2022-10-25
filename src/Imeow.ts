@@ -14,13 +14,10 @@ const commands = {
 
     up: {desc: 'Initiate deployment process'},
     info: {desc: 'Show help for a certain provider'},
-    map: {desc: 'Table of the acid aliases for service provider parameters.'},
-    down: {desc: 'Removes the acid.yml and log files'},
+    down: {desc: 'Removes the s26r.yml and log files'},
     help: {desc: `Print help info`},
     logs: {desc: 'Prints local logs to the console'},
-    wizard: {desc: 'Interactive deployment'},
     version: {desc: 'Console logs the CLI version info'},
-    list: {desc: 'List of all deployed projects to a certain provider'},
     monitor: {desc: 'Provides the health analysis for the deployed applications.'}
 };
 
