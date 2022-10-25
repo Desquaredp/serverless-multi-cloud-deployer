@@ -1,5 +1,6 @@
 import {Provider} from "../abstractProvider";
 import {Params} from "./Params";
+const logger = require('../../logger/index');
 
  class CloudRun extends Provider {
 
@@ -46,11 +47,14 @@ import {Params} from "./Params";
             service,
             serviceId,
         };
-
-        const [operation] = await client.createService(request);
-        const [response] = await operation.promise();
-
-        return response;
+        try {
+            const [operation] = await client.createService(request);
+            const [response] = await operation.promise();
+            return response;
+        }catch (e) {
+            logger.error(e);
+            return e;
+        }
     }
 
     formParent(projectNumber: string, location: string): string{

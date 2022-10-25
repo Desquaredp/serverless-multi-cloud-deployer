@@ -2,6 +2,8 @@ import {PluginManager}  from './factory/factory';
 const inquirer = require('inquirer');
 import {Provider} from "./factory/abstractProvider";
 const ora = require("ora");
+const logger = require('./logger/index');
+const chalk = require('chalk');
 
 export class Commands{
 
@@ -53,12 +55,18 @@ export class Commands{
 
             return answers;
         });
-        const spinner = ora({
-            text: '',
-        });
+
+        for(const [key, value] of Object.entries(requiredVals)) {
+            if(value == null || value == ""){
+                logger.warn( `The value for ${key} is empty, this may prevent the deployment from working`);
+            }
+        }
+
+        const spinner = ora();
 
         spinner.start('Deploying...');
         providerInstance.deploy(requiredVals);
+
         spinner.stop();
 
 
