@@ -8,6 +8,7 @@ export abstract class Provider {
     }
     abstract paramsList(): string[];
     abstract deploy(params: any );
+    abstract info();
 
     // abstract initialize(): void;
     // abstract auth(): void;

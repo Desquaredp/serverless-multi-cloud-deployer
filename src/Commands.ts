@@ -167,6 +167,40 @@ export class Commands{
 
     }
 
+    async providerHelp() {
+
+        let menu: String[] = [];
+        menu.push("How to use the app");
+        let providers = this.getProviders();
+
+        for(let provider of providers){
+            menu.push(provider);
+        }
+
+        const provider =await inquirer.prompt([
+            {
+                type: 'list',
+                message: "Select the option you want to know more about",
+                name: 'choice',
+                choices: menu,
+            }
+        ]).then (answers => {
+
+            return answers.choice;
+
+        });
+
+        if(provider == "How to use the app"){
+
+            const info = require('./info');
+            info();
+
+        }else{
+            const providerInstance: Provider = await this.manager.loadPlugin(provider, null);
+            providerInstance.info();
+        }
+
+    }
 
     async writeFile(filePath: string, json: any): Promise<void> {
 

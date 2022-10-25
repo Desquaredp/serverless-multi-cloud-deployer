@@ -6,6 +6,7 @@ const inter = require('./Imeow');
 const plugins = require('./factory/plugin');
 const cli =  Command;
 import { Commands } from './Commands';
+import {createOption} from "commander";
 
 
 cli
@@ -17,14 +18,17 @@ cli
 
 cli.command('up')
     .description('Start deployment process the files  created by this app')
-    .action(() => {
+    .action(async () => {
         const instance = new Commands(plugins);
-        instance.up();
+        await instance.up();
     });
 
 cli.command('info')
     .description('Show help for a certain provider')
-    .action( () => {
+    .argument('<provider>', 'The provider you want to get help for')
+    .action( (provider) => {
+        const instance = new Commands(plugins);
+        instance.providerHelp(provider);
     });
 
 cli.command('down')
@@ -33,14 +37,14 @@ cli.command('down')
 
 cli.command('logs')
     .description('Prints local logs to the console')
-    .action(() => {
+    .action(async () => {
         const instance = new Commands(plugins);
-        instance.logs();
+        await instance.logs();
     });
 
-cli.command('help')
-    .description('Print help info')
-    // .action(inter.showHelp);
+// cli.command('help')
+//     .description('Print help info')
+//     // .action(inter.showHelp);
 
 cli.command('clear')
     .description('Clear the console')

@@ -7,6 +7,14 @@ const flags = {
         default: true,
         alias: 'v',
         desc: 'version'
+    },
+
+    logs:{
+        type:'boolean',
+        default: true,
+        alias: 'l',
+        desc: 'logs'
+
     }
 
 };

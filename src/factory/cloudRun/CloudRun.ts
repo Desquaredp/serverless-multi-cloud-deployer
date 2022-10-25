@@ -75,6 +75,10 @@ const ora = require("ora");
         return parent;
     }
 
+    async info(){
+        const page = require('./info');
+        page();
+    }
 
 
 
