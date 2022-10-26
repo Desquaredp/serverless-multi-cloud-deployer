@@ -6,6 +6,7 @@ const inter = require('./Imeow');
 const plugins = require('./factory/plugin');
 const cli =  Command;
 import { Commands } from './Commands';
+const open = require('open');
 import {createOption} from "commander";
 
 
@@ -25,15 +26,17 @@ cli.command('up')
 
 cli.command('info')
     .description('Show help for a certain provider')
-    .argument('<provider>', 'The provider you want to get help for')
-    .action( (provider) => {
+    .action(async () => {
         const instance = new Commands(plugins);
-        instance.providerHelp(provider);
+        await instance.providerHelp();
     });
 
 cli.command('down')
     .description('Deletes the files  created by this app')
-    // .action(commands.prototype.down);
+    .action(async () => {
+            // open(
+            //     "https://www.geeksforgeeks.org");
+    });
 
 cli.command('logs')
     .description('Prints local logs to the console')
@@ -46,9 +49,6 @@ cli.command('logs')
 //     .description('Print help info')
 //     // .action(inter.showHelp);
 
-cli.command('clear')
-    .description('Clear the console')
-    // .action(commands.prototype.cleanUp);
 
 
 cli.command('monitor')

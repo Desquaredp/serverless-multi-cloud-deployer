@@ -56,7 +56,7 @@ function m() {
 
     // Instantiates a client
     const runClient = new ServicesClient();
-    const serviceId = 'league';
+    const serviceId = 'leagueuuuuuu';
     //console.log(ser);
     const service = {template: null};
     service.template = ser.template;
