@@ -34,8 +34,7 @@ cli.command('info')
 cli.command('down')
     .description('Deletes the files  created by this app')
     .action(async () => {
-            // open(
-            //     "https://www.geeksforgeeks.org");
+
     });
 
 cli.command('logs')
@@ -43,6 +42,14 @@ cli.command('logs')
     .action(async () => {
         const instance = new Commands(plugins);
         await instance.logs();
+    });
+
+cli.command('web')
+    .description('Open the web interface')
+    .action(async () => {
+        const server = require('./server');
+        open(
+            "http://localhost:3000");
     });
 
 // cli.command('help')

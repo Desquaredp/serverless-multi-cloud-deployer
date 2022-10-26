@@ -26,7 +26,8 @@ const commands = {
     down: {desc: 'Removes the s26r.yml and log files'},
     logs: {desc: 'Prints local logs to the console'},
     version: {desc: 'Console logs the CLI version info'},
-    monitor: {desc: 'Provides the health analysis for the deployed applications.'}
+    monitor: {desc: 'Provides the health analysis for the deployed applications.'},
+    web: {desc: 'Open the web interface'}
 };
 
 const helpText = meowHelp({
