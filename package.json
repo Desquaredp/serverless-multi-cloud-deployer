@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "A provider agnostic cloud deployment for containerized applications.",
   "main": "index.js",
+  "bin": {
+    "s26r": "dist/app.js"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
@@ -27,7 +30,26 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
+    "@azure/arm-containerinstance": "^9.0.0",
     "@google-cloud/run": "^0.2.2",
-    "express": "^4.18.1"
+    "chalk": "^4.1.2",
+    "cli-alerts": "^1.2.2",
+    "cli-handle-error": "^4.4.0",
+    "cli-handle-unhandled": "^1.1.1",
+    "cli-meow-help": "^3.1.0",
+    "cli-pages": "^1.2.6",
+    "cli-table": "^0.3.11",
+    "cli-welcome": "^2.2.2",
+    "commander": "^9.4.1",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.5",
+    "js-yaml": "^4.1.0",
+    "listr": "^0.14.3",
+    "meow": "^9.0.0",
+    "open": "^8.4.0",
+    "ora": "^5.4.1",
+    "ruxe": "^1.2.6",
+    "winston": "^3.8.2"
   }
 }
