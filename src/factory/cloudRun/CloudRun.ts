@@ -31,7 +31,10 @@ const ora = require("ora");
        this. parent= this.formParent(params.projectNumber, params.location);
        this. serviceId= params.serviceId;
        this. service= {template: null};
-       const container: object = {image: params.image};
+       const container: object = {image: params.image,
+           allowUnauthenticated: true,};
+
+       console.log(container);
        this.service.template = {containers: [container]};
        if (params.serviceAccount){
            this.service.template.serviceAccount = params.serviceAccount;

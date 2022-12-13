@@ -41,7 +41,7 @@
     "cli-table": "^0.3.11",
     "cli-welcome": "^2.2.2",
     "commander": "^9.4.1",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "inquirer": "^8.2.5",
     "js-yaml": "^4.1.0",
