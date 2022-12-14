@@ -16,9 +16,9 @@ manager.registerPlugin({
 
 
 manager.registerPlugin({
-    name: 'Azure Container Instance',
+    name: 'Azure Container Instances',
     templateFile: './bin/PROVIDERS/templates/azure_appinst_tmpl.json',
-    location: './cloudRun/CloudRun'
+    location: './azureContainerInstances/ContainerInstances'
 });
 
 module.exports = manager;

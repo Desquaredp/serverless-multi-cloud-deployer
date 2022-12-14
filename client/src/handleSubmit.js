@@ -92,7 +92,13 @@ function handleSubmit(event) {
             button.innerHTML = "Download Response";
             document.body.appendChild(button);
             button.addEventListener("click", function () {
-                FileSaver.saveAs(blob, "response.json");
+                var fileName = "";
+                if(response.response.error) {
+                     fileName = response.time + " - " + "failure" + ".json";
+                }else{
+                        fileName = response.time + " - " + "success" + ".json";
+                }
+                FileSaver.saveAs(blob, fileName);
 
             });
 

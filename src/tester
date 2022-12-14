@@ -8,3 +8,16 @@ location: us-central1
 serviceId: fs
 image: gcr.io/hello-world-172023/league@sha256:27b7129fc64c25a6a83fbdaf0614ecdccc985971146dfe58440a2c9bb1c81f51
 provider: GCP Cloud Run
+
+
+Azure Container Instance
+
+Subscription ID: 07339c9a-c8ab-4a87-8f9f-c4bdaf3cfee7
+
+
+
+const subscriptionId = "07339c9a-c8ab-4a87-8f9f-c4bdaf3cfee7";
+const resourceGroup = "newThing";
+const location = "westus";
+const containerGroupName = "league";
+const imageName = "mcr.microsoft.com/azuredocs/aci-helloworld";
