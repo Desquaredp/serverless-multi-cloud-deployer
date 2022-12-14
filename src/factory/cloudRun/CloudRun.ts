@@ -26,13 +26,14 @@ const ora = require("ora");
     }
 
     async deploy(params: any){
+        console.log(params);
 
 
        this. parent= this.formParent(params.projectNumber, params.location);
        this. serviceId= params.serviceId;
        this. service= {template: null};
-       const container: object = {image: params.image,
-           allowUnauthenticated: true,};
+       const container: object = {image: params.image.toString(),
+          };
 
        console.log(container);
        this.service.template = {containers: [container]};

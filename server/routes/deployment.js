@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const Commands = require("../dist/Commands");
+
+const Commands = require("../../dist/Commands");
 const plugins = require("../../dist/factory/plugin");
 const instance = new Commands.Commands(plugins);
 const providers = instance.getProviders();
-// const Commands = require("../dist/Commands");
 
 
 router.get('/', (req, res) => {
@@ -32,12 +32,18 @@ router.post('/', (req, res) => {
 
     //call the deployToProvider function and await the response
     //create an async function to await the response
-
-
-
+    deployment(req.body.formData, provider).then((response) => {
+        console.log('response', response);
+        res.json({response: response});
+    });
 
 
 });
+
+async function deployment(formData, provider) {
+    const deployment = await instance.deployToProvider(formData, provider);
+    return deployment;
+}
 
 
 
