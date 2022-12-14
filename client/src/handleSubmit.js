@@ -70,6 +70,36 @@ function handleSubmit(event) {
             }
 
 
+            //create a file to download the response from the server as a JSON file using the file-saver package
+            const FileSaver = require('file-saver');
+            //inclue the formData in the file
+            const response = {
+                time: new Date().toLocaleString(),
+                formData: formData,
+                response: data.response
+            }
+            const blob = new Blob([JSON.stringify(response, null, 2)], {type: "text/plain;charset=utf-8"});
+
+            // const blob = new Blob([JSON.stringify(data.response, null, 2)], {type: "text/plain;charset=utf-8"});
+            // FileSaver.saveAs(blob, "response.json");
+
+
+            //create a button to download the response from the server as a JSON file
+            const button = document.createElement("button");
+            button.setAttribute("class", "btn btn-primary");
+            button.setAttribute("type", "button");
+            button.setAttribute("id", "downloadButton");
+            button.innerHTML = "Download Response";
+            document.body.appendChild(button);
+            button.addEventListener("click", function () {
+                FileSaver.saveAs(blob, "response.json");
+
+            });
+
+
+
+
+
 
         });
 
