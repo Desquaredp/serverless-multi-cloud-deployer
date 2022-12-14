@@ -17,6 +17,11 @@ export class Commands{
         this.manager = manager;
     }
 
+    //add a getter for the manager
+    getManager(): PluginManager{
+        return this.manager;
+    }
+
     getProviders(): String[]{
        let val:IterableIterator<string> =  this.manager.listPluginList();
        let arr: String[] = [];
@@ -113,6 +118,13 @@ export class Commands{
         await this.writeFile("s26r.yml" , requiredVals);
 
 
+
+    }
+
+    async deployToProvider(requiredVals: any, provider: string): Promise<void> {
+
+            const providerInstance: Provider = await this.manager.loadPlugin(provider, null);
+            await providerInstance.deploy(requiredVals);
 
     }
 
