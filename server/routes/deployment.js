@@ -32,8 +32,8 @@ router.post('/', (req, res) => {
 
     //call the deployToProvider function and await the response
     //create an async function to await the response
-    deployment(req.body.formData, provider).then((response) => {
-        console.log('response', response);
+     deployment(req.body.formData, provider).then((response) => {
+        //console.log('response', response);
         res.json({response: response});
     });
 
@@ -42,6 +42,7 @@ router.post('/', (req, res) => {
 
 async function deployment(formData, provider) {
     const deployment = await instance.deployToProvider(formData, provider);
+   // console.log('deployment', deployment);
     return deployment;
 }
 

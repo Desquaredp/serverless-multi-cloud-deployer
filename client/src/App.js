@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import handleChange from "./handleChange";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
     const [data, setData] = useState({ hits: [] });
 

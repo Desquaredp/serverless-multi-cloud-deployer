@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react' ;
 import handleSubmit from  './handleSubmit' ;
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function handleChange(event)  {
 

@@ -6,5 +6,5 @@ const parent = 'projects/174561353473/locations/us-central1';
 projectNumber: '174561353473'
 location: us-central1
 serviceId: fs
-image: gcr.io/hello-world-172023/league@sha256:27b7129fc64c25a6a83fbdaf0614ecdccc985971146dfe58440a2c9bb1c81f51cr.io/hello-world-172023/league@sha256:27b7129fc64c25a6a83fbdaf0614ecdccc985971146dfe58440a2c9bb1c81f51
+image: gcr.io/hello-world-172023/league@sha256:27b7129fc64c25a6a83fbdaf0614ecdccc985971146dfe58440a2c9bb1c81f51
 provider: GCP Cloud Run

@@ -124,7 +124,11 @@ export class Commands{
     async deployToProvider(requiredVals: any, provider: string): Promise<void> {
 
             const providerInstance: Provider = await this.manager.loadPlugin(provider, null);
-            await providerInstance.deploy(requiredVals);
+            //return the response from the provider
+            const deploy = await providerInstance.deploy(requiredVals);
+            //console.log('HERE ',deploy);
+            return deploy;
+
 
     }
 
