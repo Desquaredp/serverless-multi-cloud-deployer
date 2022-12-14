@@ -26,7 +26,6 @@ const ora = require("ora");
     }
 
     async deploy(params: any){
-        console.log(params);
 
 
        this. parent= this.formParent(params.projectNumber, params.location);
@@ -35,7 +34,6 @@ const ora = require("ora");
        const container: object = {image: params.image.toString(),
           };
 
-      // console.log(container);
        this.service.template = {containers: [container]};
        if (params.serviceAccount){
            this.service.template.serviceAccount = params.serviceAccount;
@@ -65,12 +63,14 @@ const ora = require("ora");
             const [response] = await operation.promise();
             spinner.succeed('Deployed');
 
-            //console.log('The response is: ' ,response);
             return response;
 
         }catch (e) {
             spinner.fail('Failed to deploy!');
             logger.error(e);
+            e['error'] = true;
+
+
             return e;
         }
     }

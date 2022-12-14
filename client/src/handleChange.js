@@ -24,17 +24,16 @@ function handleChange(event)  {
             //generate a form based on the list of params
             .then(data => {
 
-                console.log('data', data);
                 const listOfParams = data.response;
-                console.log('listOfParams', listOfParams);
 
-                //create a form and append it to the body of the page dynamically using React DOM
+
+                //use bootstrap to style the form and button elements, and to display the form in a modal dialog
                 const form = document.createElement( "form" );
                 form.setAttribute( "id" ,  "form" );
                 form.setAttribute( "onSubmit" , handleSubmit);
+                form.setAttribute( "class" ,  "form-group" );
 
-
-//iterate over the list of params and create a label and input element for each param
+                //iterate over the list of params and create a label and input element for each param
                 listOfParams.forEach(param => {
                     const label = document.createElement( "label" );
                     label.setAttribute( "for" , param);
@@ -43,8 +42,10 @@ function handleChange(event)  {
                     const input = document.createElement( "input" );
                     input.setAttribute( "type" ,  "text" );
                     input.setAttribute( "name" , param);
+                    input.setAttribute( "class" ,  "form-control" );
                     form.appendChild(input);
-                });
+                }
+                );
 
                 //set a hidden input element to store the selected option
                 const hiddenInput = document.createElement( "input" );
@@ -60,8 +61,12 @@ function handleChange(event)  {
                 //create a submit button
                 const submitButton = document.createElement( "button" );
                 submitButton.setAttribute( "type" ,  "submit" );
+                submitButton.setAttribute( "class" ,  "btn btn-primary" );
                 submitButton.innerHTML =  "Submit" ;
                 form.appendChild(submitButton);
+
+
+
 
 
                 //append the form to the body of the page
@@ -69,22 +74,13 @@ function handleChange(event)  {
 
 
 
-
-
-
-
-
             })
 
+    }else{
 
+        window.location.href =  "/" ;
 
-            .then(res => console.log(res));
     }
-
-
-    //post the selected option to the server
-    // console.log('selectedOption', selectedOption);
-
 
 
 

@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function handleSubmit(event) {
     event.preventDefault();
-    console.log('event', event);
 
     //get the form data
     const data = new FormData(event.target);
@@ -17,15 +16,24 @@ function handleSubmit(event) {
     for (let [key, value] of data.entries()) {
         formData[key] = value;
     }
-    console.log('formData', formData);
     const json = JSON.stringify(formData);
-    console.log('json', json);
 
-    //show loading animation until the response is received
+
+
+    //show loading animation using bootstrap green loading bar
     const loading = document.createElement("div");
     loading.setAttribute("id", "loading");
-    loading.innerHTML = "Loading...";
+    loading.setAttribute("class", "progress");
+    const loadingBar = document.createElement("div");
+    loadingBar.setAttribute("class", "progress-bar progress-bar-striped progress-bar-animated bg-success");
+    loadingBar.setAttribute("role", "progressbar");
+    loadingBar.setAttribute("aria-valuenow", "100");
+    loadingBar.setAttribute("aria-valuemin", "0");
+    loadingBar.setAttribute("aria-valuemax", "100");
+    loadingBar.setAttribute("style", "width: 100%");
+    loading.appendChild(loadingBar);
     document.body.appendChild(loading);
+
 
 
 
@@ -41,20 +49,25 @@ function handleSubmit(event) {
 
     }).then(res => res.json())
         .then(data => {
-            console.log('data', data);
 
             //remove the loading animation
             const loading = document.getElementById("loading");
             loading.remove();
 
-            //display the data from the server in a bootstrap alert
-
+            //display the data from the server using bootstrap, and pretty print the JSON
             const alert = document.createElement("div");
-            alert.setAttribute("class", "alert alert-success");
-            alert.setAttribute("role", "alert");
-            alert.innerHTML = JSON.stringify(data.response);
-            document.body.appendChild(alert);
-
+            //if the response is an error, display it in a red alert
+            if (data.response.error) {
+                alert.setAttribute("class", "alert alert-danger");
+                alert.setAttribute("role", "alert");
+                alert.innerHTML = JSON.stringify(data.response, null, 2);
+                document.body.appendChild(alert);
+            }else {
+                alert.setAttribute("class", "alert alert-success");
+                alert.setAttribute("role", "alert");
+                alert.innerHTML = JSON.stringify(data.response, null, 2);
+                document.body.appendChild(alert);
+            }
 
 
 

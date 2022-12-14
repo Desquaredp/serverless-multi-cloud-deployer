@@ -8,6 +8,8 @@ const cli =  Command;
 import { Commands } from './Commands';
 const open = require('open');
 import {createOption} from "commander";
+import {spawn} from "child_process";
+import * as path from "path";
 
 
 cli
@@ -47,14 +49,35 @@ cli.command('logs')
 cli.command('web')
     .description('Open the web interface')
     .action(async () => {
-        const server = require('./server');
-        open(
-            "http://localhost:3000");
-    });
+        const server = require('../server/server');
 
-// cli.command('help')
-//     .description('Print help info')
-//     // .action(inter.showHelp);
+        //exec to the client folder and run npm start
+        const child = await spawn('npm', ['start'], {cwd: path.join(__dirname, '../client')});
+        child.stdout.on('data', (data) => {
+
+            //supress warnings
+            if(data.toString().includes('Compiled with warnings.')){
+                return;
+            }
+
+            console.log(`stdout: ${data}`);
+            if(data.toString().includes('Compiled successfully')){
+                open('http://localhost:3000');
+            }
+
+        });
+        child.stderr.on('data', (data) => {
+            console.log(`stderr: ${data}`);
+
+        });
+        child.on('exit', (code, signal) => {
+            console.log(`child process exited with code ${code} and signal ${signal}`);
+        });
+
+
+    } );
+
+
 
 
 

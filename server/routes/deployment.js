@@ -9,9 +9,8 @@ const providers = instance.getProviders();
 
 
 router.get('/', (req, res) => {
-    console.log('req', req);
-    res.send('Hello World!');
-    res.json({response: 'Hello World'})
+
+
 });
 
 //use the router to get json data from the server
@@ -21,19 +20,9 @@ router.use(express.json());
 
 router.post('/', (req, res) => {
 
-
-    console.log('hello world');
-
-    //get the selected option from the client
-    console.log('req.body', req.body);
     const provider = req.body.formData.selectedOption;
 
-    // async deployment = await instance.deployToProvider(req.body.formData, provider);
-
-    //call the deployToProvider function and await the response
-    //create an async function to await the response
      deployment(req.body.formData, provider).then((response) => {
-        //console.log('response', response);
         res.json({response: response});
     });
 
@@ -42,7 +31,6 @@ router.post('/', (req, res) => {
 
 async function deployment(formData, provider) {
     const deployment = await instance.deployToProvider(formData, provider);
-   // console.log('deployment', deployment);
     return deployment;
 }
 
