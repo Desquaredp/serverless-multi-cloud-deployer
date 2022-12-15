@@ -5,7 +5,6 @@ const router = express.Router();
 const Commands = require("../../dist/Commands");
 const plugins = require("../../dist/factory/plugin");
 const instance = new Commands.Commands(plugins);
-const providers = instance.getProviders();
 
 
 router.get('/', (req, res) => {
@@ -13,11 +12,13 @@ router.get('/', (req, res) => {
 
 });
 
-//use the router to get json data from the server
 
 router.use(express.json());
 
 
+/**
+ *  /deployment route
+ * **/
 router.post('/', (req, res) => {
 
     const provider = req.body.formData.selectedOption;

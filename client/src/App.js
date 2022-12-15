@@ -2,10 +2,13 @@ import React, {useEffect, useState} from "react";
 import handleChange from "./handleChange";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+/**
+ * This function is called when the user selects a provider from the dropdown menu.
+ * **/
+
 function App() {
     const [data, setData] = useState({ hits: [] });
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,9 +20,6 @@ function App() {
     },  []);
 
   return (
-
-
-
 
         <div className="container-fluid"  style={{marginTop: 50}}>
             <div className="row">
@@ -33,10 +33,6 @@ function App() {
                 </div>
             </div>
         </div>
-
-
-
-
 
   );
 }

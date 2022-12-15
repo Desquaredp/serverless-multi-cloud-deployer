@@ -2,7 +2,6 @@
 
 import {Provider} from "../abstractProvider";
 import {Params} from "./Params";
-import {exitOnError} from "winston";
 import {ContainerGroup, ContainerInstanceManagementClient} from "@azure/arm-containerinstance";
 import {DefaultAzureCredential} from "@azure/identity";
 const logger = require('../../logger/index');
@@ -91,7 +90,6 @@ class ContainerInstances extends Provider {
             const value = await client.containerGroups.beginCreateOrUpdate(this.resourceGroupName, this.containerGroupName, containerGroup)
 
             spinner.succeed('Deployed');
-            // console.log(value);
 
             return value;
 
@@ -101,7 +99,6 @@ class ContainerInstances extends Provider {
             logger.error(e);
             e['error'] = true;
 
-             // console.log(e);
 
             return e;
         }

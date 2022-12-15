@@ -1,26 +1,22 @@
 import React from "react";
-import {selectOptions} from "@testing-library/user-event/dist/select-options";
-//import bootstrap css
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+/**
+ * Handles the form submission.
+ * **/
 function handleSubmit(event) {
     event.preventDefault();
 
-    //get the form data
     const data = new FormData(event.target);
 
-    //create an object to store the form data
     const formData = {};
 
-    //iterate over the form data
     for (let [key, value] of data.entries()) {
         formData[key] = value;
     }
-    const json = JSON.stringify(formData);
 
-
-
-    //show loading animation using bootstrap green loading bar
     const loading = document.createElement("div");
     loading.setAttribute("id", "loading");
     loading.setAttribute("class", "progress");
@@ -34,10 +30,6 @@ function handleSubmit(event) {
     loading.appendChild(loadingBar);
     document.body.appendChild(loading);
 
-
-
-
-    //post the form data to the server
     fetch('/deployment', {
         method: 'POST',
         headers: {
@@ -49,36 +41,14 @@ function handleSubmit(event) {
 
     }).then(res => res.json())
         .then(data => {
-
-            //remove the loading animation
             const loading = document.getElementById("loading");
             loading.remove();
 
 
-
-
-
-
-
-
-            //create an alert element to display the response
             const alert = document.createElement("div");
             alert.setAttribute("class", "alert alert-success");
             alert.setAttribute("role", "alert");
 
-
-
-
-
-
-
-
-
-
-
-            //display the data from the server using bootstrap, and pretty print the JSON
-
-            //if the response is an error, display it in a red alert
             if (data.response.error) {
 
                 alert.setAttribute("class", "alert alert-danger");
@@ -93,11 +63,7 @@ function handleSubmit(event) {
             }
 
 
-
-
-            //create a file to download the response from the server as a JSON file using the file-saver package
             const FileSaver = require('file-saver');
-            //inclue the formData in the file
             const response = {
                 time: new Date().toLocaleString(),
                 formData: formData,
@@ -105,11 +71,7 @@ function handleSubmit(event) {
             }
             const blob = new Blob([JSON.stringify(response, null, 2)], {type: "text/plain;charset=utf-8"});
 
-            // const blob = new Blob([JSON.stringify(data.response, null, 2)], {type: "text/plain;charset=utf-8"});
-            // FileSaver.saveAs(blob, "response.json");
 
-
-            //create a button to download the response from the server as a JSON file
             const button = document.createElement("button");
             button.setAttribute("class", "btn btn-primary");
             button.setAttribute("type", "button");
