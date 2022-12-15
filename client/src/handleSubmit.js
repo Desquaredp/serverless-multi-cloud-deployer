@@ -54,10 +54,33 @@ function handleSubmit(event) {
             const loading = document.getElementById("loading");
             loading.remove();
 
-            //display the data from the server using bootstrap, and pretty print the JSON
+
+
+
+
+
+
+
+            //create an alert element to display the response
             const alert = document.createElement("div");
+            alert.setAttribute("class", "alert alert-success");
+            alert.setAttribute("role", "alert");
+
+
+
+
+
+
+
+
+
+
+
+            //display the data from the server using bootstrap, and pretty print the JSON
+
             //if the response is an error, display it in a red alert
             if (data.response.error) {
+
                 alert.setAttribute("class", "alert alert-danger");
                 alert.setAttribute("role", "alert");
                 alert.innerHTML = JSON.stringify(data.response, null, 2);
@@ -68,6 +91,8 @@ function handleSubmit(event) {
                 alert.innerHTML = JSON.stringify(data.response, null, 2);
                 document.body.appendChild(alert);
             }
+
+
 
 
             //create a file to download the response from the server as a JSON file using the file-saver package

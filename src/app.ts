@@ -60,7 +60,7 @@ cli.command('web')
                 return;
             }
 
-            console.log(`stdout: ${data}`);
+            // console.log(`stdout: ${data}`);
             if(data.toString().includes('Compiled successfully')){
                 open('http://localhost:3000');
             }

@@ -21,3 +21,21 @@ const resourceGroup = "newThing";
 const location = "westus";
 const containerGroupName = "league";
 const imageName = "mcr.microsoft.com/azuredocs/aci-helloworld";
+
+        tenantId: "4345ad1b-b6ec-478e-80a3-5f0a1e7df08b",
+        clientId: "42d31965-ffae-49d6-a939-84baf2559e3e",
+        loginStyle: "redirect",
+    redirectUri: "http://localhost:1337"
+
+
+    ***Azure Container Instances***
+    subscriptionId: 07339c9a-c8ab-4a87-8f9f-c4bdaf3cfee7
+    resourceGroup: newThing
+    location: westus
+    containerGroupName: s26r
+    image: mcr.microsoft.com/azuredocs/aci-helloworld
+    cpu: '1'
+    memoryInGB: '1'
+    osType: Linux
+    port: '80'
+    provider: Azure Container Instances
