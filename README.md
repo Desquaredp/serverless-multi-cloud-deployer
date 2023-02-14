@@ -1,4 +1,4 @@
-# serverless-multi-cloud-deployer
+# s26r
 A provider agnostic cloud deployment for containerized applications.
 
 ## Dependencies
